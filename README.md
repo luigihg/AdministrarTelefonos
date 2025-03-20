@@ -3,8 +3,8 @@ Microservicio para administrar telefonos.
 
 # Entorno de desarrollo
 Java 17
-Spring Boot 3.4.0
-Mongo DB
+Spring Boot 3.4.3
+Mongo DB latest (5.2.1)
 Maven apache-maven-3.9.4
 
 # Microservicio para Administrar Telefonos
