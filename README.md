@@ -9,7 +9,10 @@ Spring Boot 3.4.3
 Mongo DB latest (5.2.1)  
 Maven apache-maven-3.9.4
 Postman  
-Visual Studio Code
+Visual Studio Code  
+Redis  
+Kafka  
+
 
 # Microservicio para Administrar Telefonos
 git clone https://github.com/luigihg/AdministrarTelefonos.git

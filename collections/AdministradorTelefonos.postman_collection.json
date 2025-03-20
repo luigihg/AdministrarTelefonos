@@ -44,7 +44,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/imei/112233445566773",
+					"raw": "http://localhost:8080/telefonos/imei/112233445566774",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -53,7 +53,7 @@
 					"path": [
 						"telefonos",
 						"imei",
-						"112233445566773"
+						"112233445566774"
 					]
 				}
 			},
@@ -97,7 +97,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/67dc54d9fdf0394cb7f783f3",
+					"raw": "http://localhost:8080/telefonos/67dc50d0cad2095338777ede",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -105,7 +105,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"67dc54d9fdf0394cb7f783f3"
+						"67dc50d0cad2095338777ede"
 					]
 				}
 			},
@@ -164,7 +164,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566774\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte@gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
+					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo *\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -211,7 +211,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/telefonos/67dc50d0cad2095338777ede",
+					"raw": "http://localhost:8080/telefonos/67dc71e69e5f21271323f90d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,7 +219,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"67dc50d0cad2095338777ede"
+						"67dc71e69e5f21271323f90d"
 					]
 				}
 			},
