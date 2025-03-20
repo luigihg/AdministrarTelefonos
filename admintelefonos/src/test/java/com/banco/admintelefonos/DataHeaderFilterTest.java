@@ -39,7 +39,7 @@ public class DataHeaderFilterTest {
     @Test
     public void testDoFilterInternal_ValidHeader() throws ServletException, IOException {
         when(request.getHeader("DATA"))
-                .thenReturn("NmEyYjUzOTk2Zjk4ZDA2ZjU5OWE1OTc5YzZlODk2ZmM3NzRjZTU3Nzk0N2YxMmM3NDk2OTg2M2U1ZGI4MTU=");
+                .thenReturn("bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=");
 
         filter.doFilterInternal(request, response, filterChain);
 
