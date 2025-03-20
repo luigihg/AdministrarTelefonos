@@ -11,7 +11,13 @@
 			"name": "consultarTelefonos",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/telefonos",
 					"protocol": "http",
@@ -30,7 +36,13 @@
 			"name": "consultarTelefonoPorImei",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/telefonos/imei/112233445566773",
 					"protocol": "http",
@@ -51,7 +63,13 @@
 			"name": "obtenerTelefonosPorId",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/telefonos/67dc50d0cad2095338777ede",
 					"protocol": "http",
@@ -71,7 +89,13 @@
 			"name": "eliminarDatosTelefono",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/telefonos/67dc54d9fdf0394cb7f783f3",
 					"protocol": "http",
@@ -91,7 +115,13 @@
 			"name": "consultarClientesPaginacion",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/telefonos?page=0&size=10",
 					"protocol": "http",
@@ -125,6 +155,11 @@
 						"key": "Accept-Language",
 						"value": "es",
 						"type": "text"
+					},
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -154,7 +189,18 @@
 			"name": "ModificarDatosTelefono",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "es",
+						"type": "text"
+					},
+					{
+						"key": "DATA",
+						"value": "bXIHHGDUTBaGk7VX3Uj+7dfHY5N6nwK684IKIYvucD8=",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2025-03-15T10:30:00\",\r\n    \"imei\": \"11223344556678\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte@gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
