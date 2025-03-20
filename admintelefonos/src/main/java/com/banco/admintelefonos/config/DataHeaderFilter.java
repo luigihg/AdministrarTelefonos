@@ -1,5 +1,6 @@
 package com.banco.admintelefonos.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,15 +19,20 @@ import java.util.Base64;
 public class DataHeaderFilter extends OncePerRequestFilter {
 
     private static final String HEADER_NAME = "DATA";
-    private static final String EXPECTED_HASH = calculateSHA256("MIEXAMENPRUEBA");
+
+    private final String expectedHash;
+
+    public DataHeaderFilter(@Value("${data.header.secret}") String expectedSecret) {
+        this.expectedHash = calculateSHA256(expectedSecret);
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         String dataHeader = request.getHeader(HEADER_NAME);
 
-        if (dataHeader == null || !dataHeader.equals(EXPECTED_HASH)) {
+        if (dataHeader == null || !dataHeader.equals(expectedHash)) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.getWriter().write("Unauthorized: Invalid DATA header");
             return;

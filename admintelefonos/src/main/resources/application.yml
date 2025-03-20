@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: admintelefonos
+  data:
+    mongodb:
+      uri: mongodb://root:password@localhost:27017/admin
+      auto-index-creation: true
+data:
+  header:
+    secret: MIEXAMENPRUEBA
+
