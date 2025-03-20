@@ -25,7 +25,6 @@ public class TelefonoService {
         return telefonoRepository.findById(id);
     }
 
-    @Cacheable(value = "telefonos", key = "#imei")
     public Optional<Telefono> obtenerTelefonoPorImei(String imei) {
         return telefonoRepository.findByImei(imei);
     }
@@ -37,7 +36,6 @@ public class TelefonoService {
         return telefonoGuardado;
     }
 
-    @CacheEvict(value = "telefonos", key = "#id")
     public void eliminarTelefono(String id) {
         telefonoRepository.deleteById(id);
     }
