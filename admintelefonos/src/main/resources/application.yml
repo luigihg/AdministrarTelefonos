@@ -5,7 +5,14 @@ spring:
     mongodb:
       uri: mongodb://root:password@localhost:27017/admin
       auto-index-creation: true
+    redis:
+      host: localhost
+      port: 6379 #o 6379, el puerto por defecto de redis.
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 data:
   header:
     secret: MIEXAMENPRUEBA
-
