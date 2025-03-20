@@ -47,7 +47,7 @@ public class TelefonoController {
 
     @PostMapping
     public ResponseEntity<?> crearTelefono(@RequestBody Telefono telefono, Locale locale) {
-        ResponseEntity<?> validacion = validarTelefono(telefono, locale);
+        ResponseEntity<?> validacion = validarTelefono(telefono, locale, true);
         if (validacion != null) {
             return validacion;
         }
@@ -59,16 +59,42 @@ public class TelefonoController {
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarTelefono(@PathVariable String id, @RequestBody Telefono telefono,
             Locale locale) {
-        // Validar campos y caracteres especiales
-        ResponseEntity<?> validacion = validarTelefono(telefono, locale);
+        ResponseEntity<?> validacion = validarTelefono(telefono, locale, false);
         if (validacion != null) {
             return validacion;
         }
 
-        Optional<Telefono> telefonoExistente = telefonoService.obtenerTelefonoPorId(id);
-        if (telefonoExistente.isPresent()) {
-            telefono.setId(id);
-            Telefono telefonoActualizado = telefonoService.guardarTelefono(telefono);
+        Optional<Telefono> telefonoExistenteOptional = telefonoService.obtenerTelefonoPorId(id);
+        if (telefonoExistenteOptional.isPresent()) {
+            Telefono telefonoExistente = telefonoExistenteOptional.get();
+
+            // Actualizar los campos que se proporcionan en el objeto telefono
+            if (telefono.getNombre() != null) {
+                telefonoExistente.setNombre(telefono.getNombre());
+            }
+            if (telefono.getMarca() != null) {
+                telefonoExistente.setMarca(telefono.getMarca());
+            }
+            if (telefono.getModelo() != null) {
+                telefonoExistente.setModelo(telefono.getModelo());
+            }
+            if (telefono.getNombreCorto() != null) {
+                telefonoExistente.setNombreCorto(telefono.getNombreCorto());
+            }
+            if (telefono.getFechaCreacion() != null) {
+                telefonoExistente.setFechaCreacion(telefono.getFechaCreacion());
+            }
+            if (telefono.getNumeroCelular() != null) {
+                telefonoExistente.setNumeroCelular(telefono.getNumeroCelular());
+            }
+            if (telefono.getEmailSoporte() != null) {
+                telefonoExistente.setEmailSoporte(telefono.getEmailSoporte());
+            }
+            if (telefono.getTieneSistemaIOS() != null) {
+                telefonoExistente.setTieneSistemaIOS(telefono.getTieneSistemaIOS());
+            }
+
+            Telefono telefonoActualizado = telefonoService.guardarTelefono(telefonoExistente);
             return ResponseEntity.ok(telefonoActualizado);
         } else {
             return crearErrorResponse(ErrorCode.TELEFONO_NO_ENCONTRADO, "telefono.no.encontrado", locale);
@@ -86,7 +112,7 @@ public class TelefonoController {
         }
     }
 
-    private ResponseEntity<?> validarTelefono(Telefono telefono, Locale locale) {
+    private ResponseEntity<?> validarTelefono(Telefono telefono, Locale locale, boolean esCreacion) {
         String regex = "[a-zA-Z0-9\\s]+";
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; // Expresión regular para email
 
@@ -123,14 +149,15 @@ public class TelefonoController {
             return crearErrorResponse(ErrorCode.FECHA_CREACION_REQUERIDO, "fechaCreacion.requerido", locale);
         }
 
-        if (telefono.getImei() != null && !telefono.getImei().trim().isEmpty()) {
-            Optional<Telefono> telefonoExistenteImei = telefonoService.obtenerTelefonoPorImei(telefono.getImei());
-            if (telefonoExistenteImei.isPresent()
-                    && (telefono.getId() == null || !telefonoExistenteImei.get().getId().equals(telefono.getId()))) {
-                return crearErrorResponse(ErrorCode.IMEI_YA_EXISTE, "imei.ya.existe", locale);
+        if (esCreacion) {
+            if (telefono.getImei() != null && !telefono.getImei().trim().isEmpty()) {
+                Optional<Telefono> telefonoExistenteImei = telefonoService.obtenerTelefonoPorImei(telefono.getImei());
+                if (telefonoExistenteImei.isPresent()) {
+                    return crearErrorResponse(ErrorCode.IMEI_YA_EXISTE, "imei.ya.existe", locale);
+                }
+            } else {
+                return crearErrorResponse(ErrorCode.IMEI_REQUERIDO, "imei.requerido", locale);
             }
-        } else {
-            return crearErrorResponse(ErrorCode.IMEI_REQUERIDO, "imei.requerido", locale);
         }
 
         if (telefono.getEmailSoporte() != null && !telefono.getEmailSoporte().trim().isEmpty()) {
