@@ -1,8 +1,6 @@
 package com.banco.admintelefonos.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,8 +29,6 @@ public class TelefonoService {
 
     public Telefono guardarTelefono(Telefono telefono) {
         Telefono telefonoGuardado = telefonoRepository.save(telefono);
-        // Enviar mensaje a la cola (RabbitMQ/Kafka)
-        // Implementar la lógica de envío aquí
         return telefonoGuardado;
     }
 

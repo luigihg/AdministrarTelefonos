@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1f779475-7937-4d2e-8375-04b0a6ff0a09",
+		"_postman_id": "0eddc99c-c7b5-4276-aa7d-d3e14e2ef3f2",
 		"name": "AdministradorTelefonos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "10210960",
-		"_collection_link": "https://blue-trinity-1343.postman.co/workspace/AVON~12a21cdf-0b95-472f-9eb4-014b55503b7b/collection/10210960-1f779475-7937-4d2e-8375-04b0a6ff0a09?action=share&source=collection_link&creator=10210960"
+		"_collection_link": "https://blue-trinity-1343.postman.co/workspace/AVON~12a21cdf-0b95-472f-9eb4-014b55503b7b/collection/10210960-0eddc99c-c7b5-4276-aa7d-d3e14e2ef3f2?action=share&source=collection_link&creator=10210960"
 	},
 	"item": [
 		{
@@ -73,7 +73,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/1",
+					"raw": "http://localhost:8080/telefonos/67dc30954f8f5b6bea114fd0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -81,7 +81,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"1"
+						"67dc30954f8f5b6bea114fd0"
 					]
 				}
 			},
@@ -120,10 +120,16 @@
 			"name": "CrearDatosTelefono",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "es",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"nombre\": \"Ejemplo Teléfono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"123-456-7890\",\r\n    \"emailSoporte\": \"soporte@ejemplo.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
+					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2025-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"123-456-7890\",\r\n    \"emailSoporte\": \"soporte@ejemplo.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -151,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"id\":\"67dbad6150e2dc40b6601813\",\r\n    \"nombre\": \"Teléfono Actualizado\",\r\n    \"marca\": \"Marca Actualizada\",\r\n    \"modelo\": \"Modelo Actualizado\",\r\n    \"nombreCorto\": \"Actualizado\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"987-654-3210\",\r\n    \"emailSoporte\": \"actualizado@ejemplo.com\",\r\n    \"tieneSistemaIOS\": false\r\n}",
+					"raw": "{   \r\n    \"id\":\"67dbad6150e2dc40b6601813\",\r\n    \"nombre\": \"Telefono Actualizado\",\r\n    \"marca\": \"Marca Actualizada\",\r\n    \"modelo\": \"Modelo Actualizado\",\r\n    \"nombreCorto\": \"Actualizado\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"987-654-3210\",\r\n    \"emailSoporte\": \"actualizado@ejemplo.com\",\r\n    \"tieneSistemaIOS\": false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
