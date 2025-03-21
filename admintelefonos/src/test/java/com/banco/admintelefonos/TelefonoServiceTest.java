@@ -3,7 +3,7 @@ package com.banco.admintelefonos;
 import com.banco.admintelefonos.model.Telefono;
 import com.banco.admintelefonos.repository.TelefonoRepository;
 import com.banco.admintelefonos.service.TelefonoService;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,6 +12,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -25,6 +28,18 @@ class TelefonoServiceTest {
 
     @Mock
     private TelefonoRepository telefonoRepository;
+
+    @Mock
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Mock
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Mock
+    private ObjectMapper objectMapper;
+
+    @Mock
+    private ValueOperations<String, String> valueOperations;
 
     @InjectMocks
     private TelefonoService telefonoService;
@@ -43,6 +58,8 @@ class TelefonoServiceTest {
         telefono.setFechaCreacion(LocalDateTime.now());
         telefono.setImei("123456789012345");
         telefono.setEmailSoporte("test@example.com");
+
+        when(redisTemplate.opsForValue()).thenReturn(valueOperations);
     }
 
     @Test
@@ -81,40 +98,59 @@ class TelefonoServiceTest {
     }
 
     @Test
-    void obtenerTelefonoPorImei_deberiaRetornarTelefonoSiExiste() {
-        when(telefonoRepository.findByImei("123456789012345")).thenReturn(Optional.of(telefono));
+    void obtenerTelefonoPorImei_deberiaRetornarTelefonoDeCacheSiExiste() throws Exception {
+        String imei = "123456789012345";
+        String cacheKey = "telefono:imei:" + imei;
+        String telefonoJson = "{\"imei\":\"123456789012345\"}";
 
-        Optional<Telefono> result = telefonoService.obtenerTelefonoPorImei("123456789012345");
+        when(valueOperations.get(cacheKey)).thenReturn(telefonoJson);
+        when(objectMapper.readValue(telefonoJson, Telefono.class)).thenReturn(telefono);
+
+        Optional<Telefono> result = telefonoService.obtenerTelefonoPorImei(imei);
 
         assertTrue(result.isPresent());
         assertEquals(telefono, result.get());
-        verify(telefonoRepository, times(1)).findByImei("123456789012345");
+        verify(telefonoRepository, never()).findByImei(imei);
     }
 
     @Test
-    void obtenerTelefonoPorImei_deberiaRetornarOptionalVacioSiNoExiste() {
-        when(telefonoRepository.findByImei("999999999999999")).thenReturn(Optional.empty());
+    void obtenerTelefonoPorImei_deberiaRetornarTelefonoDeRepositorioSiNoExisteEnCache() throws Exception {
+        String imei = "123456789012345";
+        String cacheKey = "telefono:imei:" + imei;
+        String telefonoJson = "{\"imei\":\"123456789012345\"}";
 
-        Optional<Telefono> result = telefonoService.obtenerTelefonoPorImei("999999999999999");
+        when(valueOperations.get(cacheKey)).thenReturn(null);
+        when(telefonoRepository.findByImei(imei)).thenReturn(Optional.of(telefono));
+        when(objectMapper.writeValueAsString(telefono)).thenReturn(telefonoJson);
 
-        assertFalse(result.isPresent());
-        verify(telefonoRepository, times(1)).findByImei("999999999999999");
+        Optional<Telefono> result = telefonoService.obtenerTelefonoPorImei(imei);
+
+        assertTrue(result.isPresent());
+        assertEquals(telefono, result.get());
+        verify(valueOperations, times(1)).set(cacheKey, telefonoJson);
     }
 
     @Test
-    void guardarTelefono_deberiaGuardarTelefonoYRetornarTelefonoGuardado() {
+    void guardarTelefono_deberiaGuardarTelefonoYInvalidarCache() throws Exception {
         when(telefonoRepository.save(telefono)).thenReturn(telefono);
+        when(objectMapper.writeValueAsString(telefono)).thenReturn("{\"imei\":\"123456789012345\"}");
 
         Telefono result = telefonoService.guardarTelefono(telefono);
 
         assertEquals(telefono, result);
         verify(telefonoRepository, times(1)).save(telefono);
+        verify(redisTemplate, times(1)).delete("telefono:imei:123456789012345");
+        verify(kafkaTemplate, times(1)).send("telefono-cache-invalidation", "123456789012345");
     }
 
     @Test
-    void eliminarTelefono_deberiaEliminarTelefono() {
+    void eliminarTelefono_deberiaEliminarTelefonoYInvalidarCache() {
+        when(telefonoRepository.findById("1")).thenReturn(Optional.of(telefono));
+
         telefonoService.eliminarTelefono("1");
 
         verify(telefonoRepository, times(1)).deleteById("1");
+        verify(redisTemplate, times(1)).delete("telefono:imei:123456789012345");
+        verify(kafkaTemplate, times(1)).send("telefono-cache-invalidation", "123456789012345");
     }
 }

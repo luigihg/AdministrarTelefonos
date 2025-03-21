@@ -68,7 +68,7 @@ public class TelefonoService {
     public Telefono guardarTelefono(Telefono telefono) {
         Telefono telefonoGuardado = telefonoRepository.save(telefono);
         if (telefonoGuardado != null && telefonoGuardado.getImei() != null) {
-            // invalidarCache(telefonoGuardado.getImei());
+            invalidarCache(telefonoGuardado.getImei());
             System.out.println("Se debe de probar la conexion a redis");
         }
         return telefonoGuardado;

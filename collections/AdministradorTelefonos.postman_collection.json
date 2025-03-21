@@ -44,7 +44,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/imei/112233445566774",
+					"raw": "http://localhost:8080/telefonos/imei/215533445566788",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -53,7 +53,7 @@
 					"path": [
 						"telefonos",
 						"imei",
-						"112233445566774"
+						"215533445566788"
 					]
 				}
 			},
@@ -71,7 +71,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/67dc50d0cad2095338777ede",
+					"raw": "http://localhost:8080/telefonos/67dcf6c80d170322ad7b9867",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +79,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"67dc50d0cad2095338777ede"
+						"67dcf6c80d170322ad7b9867"
 					]
 				}
 			},
@@ -97,7 +97,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/telefonos/67dc50d0cad2095338777ede",
+					"raw": "http://localhost:8080/telefonos/67dcf4d0b2400827e81ef43d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -105,7 +105,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"67dc50d0cad2095338777ede"
+						"67dcf4d0b2400827e81ef43d"
 					]
 				}
 			},
@@ -164,7 +164,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo *\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"112233445566778\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
+					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2024-03-15T10:30:00\",\r\n    \"imei\": \"215533445566788\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte@gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -203,7 +203,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono\",\r\n    \"marca\": \"Marca Ejemplo\",\r\n    \"modelo\": \"Modelo Ejemplo\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2025-03-15T10:30:00\",\r\n    \"imei\": \"11223344556678\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte@gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
+					"raw": "{   \r\n    \"nombre\": \"Ejemplo Telefono x\",\r\n    \"marca\": \"Marca Ejemplo x\",\r\n    \"modelo\": \"Modelo Ejemplo x\",\r\n    \"nombreCorto\": \"Ejemplo\",\r\n    \"fechaCreacion\": \"2025-03-15T10:30:00\",\r\n    \"imei\": \"11223344556678\",\r\n    \"numeroCelular\": \"5642877166\",\r\n    \"emailSoporte\": \"soporte@gmail.com\",\r\n    \"tieneSistemaIOS\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -211,7 +211,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/telefonos/67dc71e69e5f21271323f90d",
+					"raw": "http://localhost:8080/telefonos/67dcf6c80d170322ad7b9867",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,7 +219,7 @@
 					"port": "8080",
 					"path": [
 						"telefonos",
-						"67dc71e69e5f21271323f90d"
+						"67dcf6c80d170322ad7b9867"
 					]
 				}
 			},
