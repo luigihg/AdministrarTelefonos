@@ -10,12 +10,14 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+    container_name: admintelefonos-mongo
     restart: always
 
   redis:
     image: redis:latest
     ports:
       - "6379:6379"
+    container_name: admintelefonos-redis
     restart: always
 
   zookeeper:
@@ -25,6 +27,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    container_name: admintelefonos-zookeeper
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -35,10 +38,11 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://admintelefonos-kafka:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    container_name: admintelefonos-kafka
 
 volumes:
   mongo-data:
