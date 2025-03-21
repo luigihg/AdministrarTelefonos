@@ -28,3 +28,4 @@ Instalar extensiones en VSC: Extension Pack for Java, Maven for java.
 
 # Solicitar documentación tecnica al lider del equipo
 Se entrego el documento al personal autorizado solicitar documentacion tecnica para el desarrollo de microservicio restful para la administracion de telefonos
+ver en AdministrarTelefonos\docs archivo: Documentación Tecnica Administrador telefonos.pdf
